@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Reservation{% endblock %}
+
+{% block body %}
+
+
+
+
+<div class=" container-fluid mt-2"  >
+  <div class="row justify-content-center">
+    <div class="col-sm-6 text-center">
+
+        <div class="row justify-content-center mt-3">
+    
+    <table class="table border border-info shadow-lg mt-5 table-info">
+    <tr class="thead-dark text-center">
+    <th><i class="fa fa-plus fa-2x" aria-hidden="true"></i><i class="fa fa-book fa-2x" aria-hidden="true"></i></th>
+    </tr>
+    
+    <tr>
+    <th>
+    {{ include('reservation/_form.html.twig') }}
+    </th>
+    </tr>
+    </table>
+
+    <table class="table border border-info shadow-lg mt-5">
+    <tr>
+    <th class="text-center">
+     <a class="btn btn-Dark icon" href="{{ path('reservation_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+    </th>
+    </tr>
+    </table>
+    
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

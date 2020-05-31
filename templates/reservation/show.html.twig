@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation{% endblock %}
+
+{% block body %}
+   <div class=" container-fluid mt-5"  >
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+    <div class="row justify-content-center mt-3">
+    <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+     <table class="table border border-info shadow-lg mt-5 " >
+        <tbody class="table-info">
+            <tr class="thead-dark text-center" width=50>
+                 <th  colspan=2><i class="fa fa-book fa-2x" aria-hidden="true"></i></th>
+            </tr>
+            <tr >
+                <th>Id</th>
+                <td class=" text-center pt-3 ">{{ reservation.id }}</td>
+                
+            </tr>
+            <tr>
+                <th>Nom client</th>
+                <td class=" text-center pt-3 " >{{ reservation.getIdClient().nomcl }}  {{ reservation.getIdClient().prenomcl }}</td>
+                
+                
+            </tr>
+            <tr>
+                <th>Service</th>
+                <td class=" text-center pt-3 ">{{ reservation.getIdService().libelle }}</td>
+                
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td class=" text-center pt-3 ">{{ reservation.dater ? reservation.dater|date('Y M d h:i') : '' }} </td>
+               
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td class=" text-center pt-3 ">{{ reservation.etat }} </td>
+                
+            </tr>
+        </tbody>
+    </table>
+
+    <table class="table text-center border border-info shadow-lg mt-5 " >
+            <tr>
+                <th><a class="btn btn-Dark icon" href="{{ path('reservation_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></th>
+                <th><a class="btn btn-Dark icon" href="{{ path('reservation_edit', {'id': reservation.id}) }}"><i class="fa fa-edit fa-1x"></a></th>
+                <th> {{ include('reservation/_delete_form.html.twig') }}</th>
+                
+            </tr>
+    </table>
+    
+    </div>
+</div>
+</div>
+</div>
+{% endblock %}

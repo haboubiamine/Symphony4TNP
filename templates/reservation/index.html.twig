@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation index{% endblock %}
+
+{% block body %}
+   <div class=" container-fluid mt-5"  >
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+    <div class="row justify-content-center mt-3">
+
+    <div class ="col-sm-12">
+        <h1 class="text-center">Reservation</h1>
+        <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+         <select  class ="custom-select-sm mr-5" id="maxRows">
+                         <option value="5" selected>5</option>
+                         <option value="10">10</option>
+                         <option value="20">20</option>
+                         <option value="1000">All</option>
+                </select>
+        <div class="custom-control custom-switch text-right ">
+                <input type="checkbox" onclick="TodayR()" class="custom-control-input " id="switch1">
+                <label class="custom-control-label" for="switch1">Today Reservation</label>
+                
+            </div>
+        
+            
+        </div>
+
+     
+
+    <table id="Table" class="table table-striped border-info shadow-lg ">
+        <thead class="thead-dark">
+           <tr class="text-center table-info">
+                <th><i class="fa fa-hashtag " aria-hidden="true"></i></th>
+                <th width=200>Nom client</th>
+                <th width=200>Service</th>
+                <th width=250>Etat</th>
+                <th width=350><i class="fa fa-calendar" aria-hidden="true"></i>Date</th>
+                
+                
+                
+                <th width=150 colspan=3>Actions <a class="float-right " href="{{ path('reservation_new') }}"><i class="fa fa-plus-square fa-1x"></i></a></th>
+            </tr>
+        </thead>
+         <tbody id="myTable">
+        {% for reservation in reservations %}
+            <tr class="text-center table-info anim">
+                <td width=20 class="align-middle">{{ reservation.id }}</td>
+                <td class="align-middle">{{ reservation.getIdClient().nomcl }}</td>
+                <td class="align-middle">{{ reservation.getIdService().libelle }}</td>
+                 <td class="align-middle">{{ reservation.etat }}</td>
+                <td class="align-middle">{{ reservation.dater ? reservation.dater|date('d M h:i') : '' }} </td>
+                <td width=50 class="align-middle">
+                    <a class="btn btn-Dark icon" href="{{ path('reservation_show', {'id': reservation.id}) }}"><i class="fa fa-eye fa-1x"></i></a>
+                </td class="align-middle">
+                <td width=50>
+                    <a class="btn btn-Dark icon" href="{{ path('reservation_edit', {'id': reservation.id}) }}"><i class="fa fa-edit fa-1x"></i></a>
+                </td class="align-middle">
+                 <td width=50>
+                    {{ include('reservation/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+
+
+    
+{% endblock %}

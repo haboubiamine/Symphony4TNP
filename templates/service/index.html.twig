@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service index{% endblock %}
+
+{% block body %}
+    <div class=" container-fluid mt-5"  >
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+    <div class="row justify-content-center mt-3">
+
+    <div class ="col-sm-12">
+        <h1 class="text-center">Service</h1>
+        <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
+        <select  class ="custom-select-sm " id="maxRows">
+                         <option value="5" selected>5</option>
+                         <option value="10">10</option>
+                         <option value="20">20</option>
+                         <option value="1000">All</option>
+        </select>
+        </div>
+
+    
+
+    <table id="Table" class="table table-striped border-info shadow-lg mt-3">
+        <thead class="thead-dark">
+           <tr class="text-center">
+                <th width=20><i class="fa fa-hashtag " aria-hidden="true"></i></th>
+                <th width=210>Libelle</th>
+                <th width=570 >Description</th>
+                <th  width=140 colspan=3>Actions <a class="float-right " href="{{ path('service_new') }}"><i class="fa fa-plus-square fa-1x"></a></th>
+            </tr>
+        </thead>
+         <tbody id="myTable">
+        {% for service in services %}
+           <tr class="table-info text-center anim"  height=20>
+                <td class="align-middle" >{{ service.id }}</td>
+                <td class="align-middle">{{ service.libelle }}</td>
+                <td class="align-middle"><p class="desc">{{ service.description }}</p></td>
+                <td width=40 class="align-middle">
+                    <a class="btn btn-Dark icon" href="{{ path('service_show', {'id': service.id}) }}"><i class="fa fa-eye fa-1x"></i></a>
+                </td>
+                <td width=40 class="align-middle">
+                    <a class="btn btn-Dark icon" href="{{ path('service_edit', {'id': service.id}) }}"><i class="fa fa-edit fa-1x"></i></a>
+                </td>
+                <td width=40 class="align-middle">
+                   {{ include('service/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6" class="text-center">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+   
+
+    </div>
+    </div>
+    </div>
+
+{% endblock %}

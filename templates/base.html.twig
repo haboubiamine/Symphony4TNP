@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <!--   Fonts and icons   -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300" rel="stylesheet" type="text/css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+        {% block stylesheets %}{% endblock %}
+        <style>
+*{
+  font-family: Consolas;
+  font-variant: no-common-ligatures proportional-nums;
+}
+
+.desc {
+  width: 570px;
+  height: 20px;
+  margin-left: 150px;
+  margin-bottom :0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.anim{
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.anim:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+  transform: scale(1.01);
+}
+.icon{
+  
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.icon:hover {
+ box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+  transform: scale(1.05);
+}
+
+#back-to-top-btn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 26px;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #73bee6;
+  cursor: pointer;
+  outline: none;
+  border: 3px solid #73bee6;
+  border-radius: 50%;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+  transition-property: background-color, color;
+}
+#back-to-top-btn:hover, #back-to-top-btn:focus {
+  background-color: #73bee6;
+  color: #fff;  
+}
+
+@media(max-width: 992px) {
+  .container { padding: 20px 100px; }
+  #back-to-top-btn { font-size: 22px; width: 40px; height: 40px; bottom: 15px; right: 15px; }
+}
+@media(max-width:768px) {
+  body { font-size: 16px; }
+  .container { padding: 10px 50px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 22px; }
+  hr { margin: 30px 0; }
+  #back-to-top-btn { font-size: 18px; width: 32px; height: 32px; bottom: 6px; right: 6px; }
+}
+
+/* Animations */
+.btnEntrance {
+  animation-duration: 0.5s;
+  animation-fill-mode: both;
+  animation-name: btnEntrance;
+}
+
+
+/* fadeInUp */
+@keyframes btnEntrance {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.btnExit {
+  animation-duration: 0.25s;
+  animation-fill-mode: both;  
+  animation-name: btnExit;
+}
+/* fadeOutDown */
+@keyframes btnExit {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+}
+
+</style>
+    </head>
+    <body>
+   <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white ">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-center" id="navbarTogglerDemo02">
+    <ul class="navbar-nav ">
+      <li class="nav-item ">
+        <a class="nav-link" href="{{ path('reservation_index') }}">Reservation</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('client_index') }}">Client</a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link" href="{{ path('service_index') }}">Service</a>
+      </li>
+    </ul>
+    <form class="form-inline ml-auto my-2 my-lg-0">
+      <input class="form-control mr-sm-2" id="Input"  type="search" placeholder="Search">
+    </form>
+  </div>
+</nav>
+        {% block body %}{% endblock %}
+        
+        {% block javascripts %}
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+    
+        {% endblock %}
+        <script>
+
+
+        // pagination
+$(document).ready(function(){
+  var x = document.getElementsByTagName("title")[0].innerHTML;
+  if(x === "Reservation" || x === "Edit Reservation" || x === "Client" || x === "Edit Client" || x === "Service" || x === "Edit Service" ){$('#Input').hide();}
+    $('#Table').after('<div id="nav"></div>');
+    var rowsShown = parseInt(document.getElementById('maxRows').value);
+    var rowsTotal = $('#Table tbody tr').length;
+    var numPages = rowsTotal/rowsShown;
+    for(i = 0;i < numPages;i++) {
+        var pageNum = i + 1;
+        $('#nav').append('<a class="btn btn-info icon text-center" href="#" rel="'+i+'">'+pageNum+'</a> ');
+    }
+    $('#Table tbody tr').hide();
+    $('#Table tbody tr').slice(0, rowsShown).show();
+    $('#nav a:first').addClass('active');
+    $('#nav a').bind('click', function(){
+
+        $('#nav a').removeClass('active');
+        $(this).addClass('active');
+        var currPage = $(this).attr('rel');
+        var startItem = currPage * rowsShown;
+        var endItem = startItem + rowsShown;
+        $('#Table tbody tr').hide().slice(startItem, endItem).
+                css('display','table-row').animate({opacity:1}, 300);
+    });
+    $('#maxRows').on('change', function() {     
+	  $('#nav').remove();
+    $('#Table').after('<div id="nav"></div>');
+    rowsShown = parseInt(document.getElementById('maxRows').value);
+    rowsTotal = $('#Table tbody tr').length;
+    numPages = rowsTotal/rowsShown;
+    for(i = 0;i < numPages;i++) {
+        var pageNum = i + 1;
+        $('#nav').append('<a class="btn btn-info icon text-center" href="#" rel="'+i+'">'+pageNum+'</a> ');
+    }
+    $('#Table tbody tr').hide();
+    $('#Table tbody tr').slice(0, rowsShown).show();
+    $('#nav a:first').addClass('active');
+    $('#nav a').bind('click', function(){
+
+        $('#nav a').removeClass('active');
+        $(this).addClass('active');
+        var currPage = $(this).attr('rel');
+        var startItem = currPage * rowsShown;
+        var endItem = startItem + rowsShown;
+        $('#Table tbody tr').hide().slice(startItem, endItem).
+                css('display','table-row').animate({opacity:1}, 300);
+    });                 
+        });
+});
+
+// Filter
+
+$(document).ready(function(){
+  $("#Input").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    if (value != ""){
+      $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+    }
+    else {
+      var rowsShown = parseInt(document.getElementById('maxRows').value);
+ $('#Table tbody tr').hide();
+        $('#Table tbody tr').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function(){
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#Table tbody tr').hide().slice(startItem, endItem).css('display','table-row').animate({opacity:1}, 300);                    
+        });
+}    
+  });
+});
+
+
+// back to top function
+
+ const backToTopButton = document.querySelector("#back-to-top-btn");
+
+window.addEventListener("scroll", scrollFunction);
+
+function scrollFunction() {
+  if (window.pageYOffset > 50) { // Show backToTopButton
+    if(!backToTopButton.classList.contains("btnEntrance")) {
+      backToTopButton.classList.remove("btnExit");
+      backToTopButton.classList.add("btnEntrance");
+      backToTopButton.style.display = "block";
+    }
+  }
+  else { // Hide backToTopButton
+    if(backToTopButton.classList.contains("btnEntrance")) {
+      backToTopButton.classList.remove("btnEntrance");
+      backToTopButton.classList.add("btnExit");
+      setTimeout(function() {
+        backToTopButton.style.display = "none";
+      }, 250);
+    }
+  }
+}
+
+backToTopButton.addEventListener("click", smoothScrollBackToTop);
+
+// function backToTop() {
+//   window.scrollTo(0, 0);
+// }
+
+function smoothScrollBackToTop() {
+  const targetPosition = 0;
+  const startPosition = window.pageYOffset;
+  const distance = targetPosition - startPosition;
+  const duration = 750;
+  let start = null;
+  
+  window.requestAnimationFrame(step);
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const progress = timestamp - start;
+    window.scrollTo(0, easeInOutCubic(progress, startPosition, distance, duration));
+    if (progress < duration) window.requestAnimationFrame(step);
+  }
+}
+
+function easeInOutCubic(t, b, c, d) {
+	t /= d/2;
+	if (t < 1) return c/2*t*t*t + b;
+	t -= 2;
+	return c/2*(t*t*t + 2) + b;
+};
+
+
+
+
+// Today Reservation
+
+
+function TodayR(){
+
+  var checkBox = document.getElementById("switch1");
+  if (checkBox.checked == true){
+    var currentTime = new Date();
+var month = currentTime.getMonth() + 1;
+var day = currentTime.getDate();
+if (month === 1){ month = "Jan";}
+else if (month === 2){ month = "Feb";}
+else if (month === 3){ month = "Mar";}
+else if (month === 4){ month = "Apr";}
+else if (month === 5){ month = "May";}
+else if (month === 6){ month = "Jun";}
+else if (month === 7){ month = "Jul";}
+else if (month === 8){ month = "Aug";}
+else if (month === 9){ month = "Sep";}
+else if (month === 10){ month = "Oct";}
+else if (month === 11){ month = "Nov";}
+else if (month === 12){ month = "Dec";}
+var date = day+" "+ month;
+
+$("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(date.toLowerCase()) > -1)
+    });
+    $('#nav').hide();
+    $('#maxRows').hide();
+    $('#Input').hide();
+    
+    
+     }
+
+  else {  
+    var rowsShown = parseInt(document.getElementById('maxRows').value);
+ $('#Table tbody tr').hide();
+        $('#Table tbody tr').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function(){
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#Table tbody tr').hide().slice(startItem, endItem).css('display','table-row').animate({opacity:1}, 300);                    
+        });
+        $('#nav').show();
+         $('#maxRows').show();
+         $('#Input').show();
+        }
+  
+}
+
+
+</script>
+    </body>
+</html>

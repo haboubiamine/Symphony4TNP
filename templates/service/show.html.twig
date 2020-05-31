@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service{% endblock %}
+
+{% block body %}
+    <div class=" container-fluid mt-5"  >
+  <div class="row justify-content-center">
+    <div class="col-sm-8">
+    <div class="row justify-content-center mt-3">
+     <table class="table border border-info shadow-lg mt-5 " >
+        <tbody>
+            <tbody class="table-info">
+            <tr class="thead-dark text-center" width=50>
+                 <th  colspan=2><i class="fa fa-user fa-2x" aria-hidden="true"></i></th>
+            </tr>
+            <tr class=" text-center">
+                <th>Id</th>
+                <td class=" text-center align-middle ">{{ service.id }}</td>
+                
+            </tr>
+            <tr class=" text-center">
+                <th>Libelle</th>
+                <td class=" text-center align-middle ">{{ service.libelle }}</td>
+            </tr>
+            <tr class=" text-center">
+                <th class="pt-5 output">Description</th>
+                <td><textarea  class="form-control bg" rows="4" cols="80" disabled>{{ service.description }}</textarea></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="table text-center border border-info shadow-lg mt-5 " >
+            <tr>
+                <th><a class="btn btn-Dark icon" href="{{ path('service_index') }}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></th>
+                <th><a class="btn btn-Dark icon" href="{{ path('service_edit', {'id': service.id}) }}"><i class="fa fa-edit fa-1x"></a></th>
+                <th> {{ include('service/_delete_form.html.twig') }}</th>
+                
+            </tr>
+    </table>
+    
+    </div>
+</div>
+</div>
+</div>
+
+{% endblock %}
